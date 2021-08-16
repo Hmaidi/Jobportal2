@@ -75,3 +75,16 @@ Route::post('/formsfield/{id}','API\FormsJobController@store');
 //contract
 Route::apiResource('contract','API\ContractController');
 Route::get('/searchcontract', 'API\ContractController@searchc');
+
+
+Route::get('/indexjob','API\HomeController@getjobs');
+Route::get('/indexcategory','API\HomeController@getcategories');
+Route::get('/indexcompany','API\HomeController@getcompanies');
+Route::get('/indexlocation','API\HomeController@getlocations');
+Route::get('/indexcontract','API\HomeController@getcontracts');
+Route::get('/searchjob', 'API\HomeController@searchjob');
+
+Route::get('/searchwithcontract/{id}','API\HomeController@getjobswithcontract');
+Route::get('/searchwithlocation/{id}','API\HomeController@getjobswithlocation');
+Route::get('/searchwithcategorie/{id}','API\HomeController@getjobswithcategorie');
+Route::get('/getindexjob/{id}','API\HomeController@getjob');

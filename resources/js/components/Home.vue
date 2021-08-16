@@ -21,11 +21,7 @@ user:JSON.parse(localStorage.getItem('user')),
 
 },
 created(){
-let axiosConfig = {
-headers: {
-"Authorization": 'Bearer '+this.user['token']
-}
-};
+
 
 
 },

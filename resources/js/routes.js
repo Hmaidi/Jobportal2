@@ -13,7 +13,8 @@ import location from './components/Admin/Location.vue'
 import companie from './components/Admin/Companie.vue'
 import contracttype from './components/Admin/ContractType.vue'
 import viewjob from './components/Admin/Jobs/ViewJob.vue'
-
+import index from './components/index.vue'
+import jobdetail from './components/jobdetail.vue'
 export const routes = [
     {path: '/', component: Main ,meta: {requiresAuth: true},children:[
       
@@ -31,6 +32,9 @@ export const routes = [
         
         ]
 },
+    {path: '/index', component: index,meta: {requiresAuth: false} },
+        {path: '/jobdetail/:id' , component: jobdetail , meta: {requiresAuth: false}},
+          
     {path: '/login', component: Login,meta: {requiresAuth: false}},
     {path: '/register', component: register,meta: {requiresAuth: false}},
  {path: '/reset-password', component:Pass},

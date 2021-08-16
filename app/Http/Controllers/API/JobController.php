@@ -20,7 +20,7 @@ class JobController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login']]);
+        $this->middleware('auth:api', ['except' => ['login','index']]);
     }
     public function index()
     {
@@ -204,4 +204,10 @@ class JobController extends Controller
              
            
                }
+               public function getjobs(){
+                $jobs=jobs::latest()->paginate(8);
+                return response()->json([
+                    "jobs"=>$jobs
+                ]);
+                }
 }

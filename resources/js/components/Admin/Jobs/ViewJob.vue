@@ -15,7 +15,7 @@
             </ol>
           </div>
         </div>
-      </div><!-- /.container-fluid -->
+      </div>
     </section>
 
     <section class="content">
@@ -25,9 +25,9 @@
             <div class="callout callout-info">
               <h5> Title: <span class="text-muted well well-sm shadow-none"> {{jobs.job.title}} </span> </h5>
             </div>
-            <!-- Main content -->
+           
             <div class="invoice p-3 mb-3">
-              <!-- title row -->
+             
               <div class="row">
                 <div class="col-12">
                   <h4>
@@ -36,16 +36,16 @@
                   </h4>
                   <hr>
                 </div>
-                <!-- /.col -->
+           
               </div>
-              <!-- info row -->
+           
               <div class="row invoice-info">
                 <div class="col-sm-4 invoice-col">
                     <strong>Company</strong><br>
                 <p class="text-muted well well-sm shadow-none" v-for="companie in companies.companie.data" :v-if="companie.job_id == key" :key="companie.id" > {{companie.name}}</p>
                 
                 </div>
-                <!-- /.col -->
+               
                 <div class="col-sm-4 invoice-col">
                   
                   
@@ -54,19 +54,18 @@
                      <p class="text-muted well well-sm shadow-none" v-for="location in locations.location.data" :v-if="location.job_id == key" :key="location.id" > {{location.name}}</p>
                      <br>
                 </div>
-                <!-- /.col -->
+          
                 <div class="col-sm-4 invoice-col">
                   <b>Contract type</b>
                   <br>
                 <p class="text-muted well well-sm shadow-none" v-for="contract in contracts.contract.data" :v-if="contract.job_id == key" :key="contract.id" > {{contract.name}}</p>
                <br>
                 </div>
-                
-                <!-- /.col -->
+          
               </div>
            
              
-              <!-- /.row -->
+         
 
               <div class="row">
                 <div class="col-6">
@@ -100,7 +99,7 @@
         </div>
       </div>
     </section>
-           </div>
+       </div>
         </div>
     </div>
     

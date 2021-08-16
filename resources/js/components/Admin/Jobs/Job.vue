@@ -44,7 +44,7 @@
                     <td>
                                <div class="dropdown">
                         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                          <img :src="`/img/icon/status.png`" style="width: 25px;">
+                          <img :src="`/img/icon/status.png`" style="width: 20px;">
                         <span class="caret"></span></button>
                         <ul class="dropdown-menu">
                        <li> <a class="dropdown-item" href="#" 

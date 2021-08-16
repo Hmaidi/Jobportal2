@@ -4,7 +4,7 @@ export function initialize(store, router) {
         const currentUser = store.state.currentUser;
 
         if(requiresAuth && !currentUser) {
-            next('/login');
+            next('/index');
         } else if(to.path == '/login' && currentUser) {
             next('/home');
         } 
