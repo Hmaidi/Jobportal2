@@ -55,7 +55,7 @@
 
 					</div>
                     <div class="d-flex justify-content-center links">
-                   <router-link to="/reset-password">Forget Password?</router-link>
+                   <router-link to="/register">Register?</router-link>
                     </div>
 
 					<div class="d-flex justify-content-center links  error" v-if="authError">
@@ -100,7 +100,8 @@ export default {
                 login(this.$data.form)
                     .then((res) => {
                         this.$store.commit("loginSuccess", res);
-                        this.$router.push({path: '/home'});
+                        this.$router.push( this.$route.query.redirect || '/listjob');
+						
                     })
                     .catch((error) => {
                         this.$store.commit("loginFailed", {error});

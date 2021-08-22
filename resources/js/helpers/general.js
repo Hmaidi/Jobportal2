@@ -2,14 +2,16 @@ export function initialize(store, router) {
     router.beforeEach((to, from, next) => {
         const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
         const currentUser = store.state.currentUser;
-
-        if(requiresAuth && !currentUser) {
-            next('/index');
+        if(to.path == '/' && !currentUser) {
+            next('/listjob');
+        }
+       else if(requiresAuth && !currentUser) {
+            next('/login');
         } else if(to.path == '/login' && currentUser) {
-            next('/home');
+            next('/listjob');
         } 
         else if(to.path == '/' && currentUser) {
-            next('/home');
+            next('/listjob');
         }
         else  {
             next();

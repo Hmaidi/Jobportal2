@@ -14,7 +14,9 @@ import companie from './components/Admin/Companie.vue'
 import contracttype from './components/Admin/ContractType.vue'
 import viewjob from './components/Admin/Jobs/ViewJob.vue'
 import index from './components/index.vue'
-import jobdetail from './components/jobdetail.vue'
+import jobdetail from './components/User/jobdetail.vue'
+import listjob from './components/User/listjob.vue'
+import formapplication from './components/User/formapplication.vue'
 export const routes = [
     {path: '/', component: Main ,meta: {requiresAuth: true},children:[
       
@@ -32,8 +34,12 @@ export const routes = [
         
         ]
 },
-    {path: '/index', component: index,meta: {requiresAuth: false} },
+    {path: '/index', component: index,meta: {requiresAuth: false}, children:[
+        {path: '/listjob' , component: listjob , meta: {requiresAuth: false}},
         {path: '/jobdetail/:id' , component: jobdetail , meta: {requiresAuth: false}},
+        {path: '/formapplication/:id' , component: formapplication , meta: {requiresAuth: true}},
+    ] },
+
           
     {path: '/login', component: Login,meta: {requiresAuth: false}},
     {path: '/register', component: register,meta: {requiresAuth: false}},

@@ -52,7 +52,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     
-    <router-link to="/home" class="brand-link">
+    <router-link to="/listjob" class="brand-link">
  
  <img src="/img/icon/logo.jpg"
            
@@ -81,24 +81,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
      
-                <li class="nav-item">
+                <li v-if="currentUser.role == 'user'" class="nav-item">
       
-                        <router-link :to="`/profile/${currentUser.id}`" class="nav-link">
+                        <router-link  :to="`/profile/${currentUser.id}`" class="nav-link">
                       
                         <i class="fas fa-id-badge" style="color:#05dfd7"></i> 
                         <p>Profile</p>
                         </router-link>
                       </li>
-                        <li class="nav-item">
+                        <li class="nav-item" v-if="currentUser.role == 'admin'">
                         
-                        <router-link to="/companie" class="nav-link">
+                        <router-link  to="/companie" class="nav-link">
                         
                 
                        <i class="fas fa-building" style="color:#05dfd7"></i> 
                         <p>Companies</p>
                         </router-link>
                     </li>
-                         <li class="nav-item">
+                         <li class="nav-item" v-if="currentUser.role == 'admin'">
                         
                         <router-link to="/categorie" class="nav-link">
                         
@@ -106,7 +106,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <p>Competency center</p>
                         </router-link>
                     </li>
-                         <li class="nav-item">
+                         <li class="nav-item" v-if="currentUser.role == 'admin'">
                         
                         <router-link to="/location" class="nav-link">
                         
@@ -115,7 +115,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </router-link>
                     </li>
 
-                         <li class="nav-item">
+                         <li class="nav-item" v-if="currentUser.role == 'admin'">
                         
                         <router-link to="/contracttype" class="nav-link">
                         
@@ -123,7 +123,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <p>Contracts Type</p>
                         </router-link>
                     </li>
-                         <li class="nav-item">
+                         <li class="nav-item" v-if="currentUser.role == 'admin'">
                         
                         <router-link to="/job" class="nav-link">
                         
@@ -224,7 +224,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             logout() {
                 this.$store.commit('logout');
-                this.$router.push('/index');
+                this.$router.push('/listjob');
             },
             
         },

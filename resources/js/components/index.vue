@@ -5,116 +5,21 @@
         <header>
             <div class="wrapper">
                 <div class="logo">
-                  <a href="#"><b>Machinestalk</b></a>
+                  <router-link to="/listjob"><b>Machinestalk</b></router-link>
                 </div>
                 <nav>
-                  <router-link class="lien" to="/login"> Login </router-link> 
-                  <router-link  class="lien" to="/register"> Register</router-link>
-                  <!--a href="#">Home</a-->
+                    <router-link   v-if="!currentUser" to="/login"> Login </router-link> 
+                  <router-link v-if="!currentUser" to="/register"> Register</router-link>
+
+                  <router-link v-if="currentUser" :to="`/profile/${currentUser.id}`">Dashbord</router-link>
+                  <a href="#!" v-if="currentUser" @click.prevent="logout" > Logout  </a>
+                 
                 </nav>
             </div>
         </header>
-        <div class="banner-area">
-          
-           
-          
-         
-        <div class="select-list">
-            <form action="enhanced-results.html">
-                <div class="row">
-                    <div class="col-md-10 offset-md-1">
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="form-group">
-                                   
-                                 
-                                       <select @click="searchwithlocation()"  id="location" class="form-control"  data-placeholder="Any" style="width: 100%;"
-                 v-model="location_id" >
-                    <option value="" disabled selected>Select Location</option>
-        <option  v-for ="(location , index) in locations.locations.data" :key="index" v-bind:value="location.id">{{ location.name }}</option>
-                  
-                </select>
-                                   
-                                </div>
-
-
-                            </div>
-                            <div class="col-3">
-                                <div class="form-group">
-                        
-                <select @click="searchwithcategorie()" v-model="categorie_id" name  id="categories" class="form-control" 
-                >
-                   <option value="" disabled selected>Select Competency center</option>
-        <option  v-for ="(categorie , index) in categories.categories.data" :key="index" v-bind:value="categorie.id">{{ categorie.name }}</option>
-                
-                </select>
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <div class="form-group">
-                                     
-                <select @click="searchwithcontract()" v-model="contract_id"  name  id="contract_id" class="form-control" 
-                  >
-                   <option value="" disabled selected>Select type</option>
-       <option  v-for ="(contract , index) in contracts.contracts.data" :key="index" v-bind:value="contract.id">{{ contract.name }}</option>  
-                
-                </select> 
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="input-group input-group-lg">
-                                <input type="search" class="form-control form-control-lg" v-model="searche"  @keyup="search" placeholder="Type your keywords here" >
-                                <div class="input-group-append">
-                                    <button style="background-color: white" type="submit" @click.prevent="search" class="btn btn-lg btn-default">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-        </div>
-        <div class="content-area">
-          <div class="wrapper">
-            <h2><b>Job Opportunities</b></h2>
-              <!--div class="col-lg-8 post-list"-->
-    
-        <div  v-for="job in jobs.jobs.data" :key="job.id">
-            <div class="job">
-                <div >
-                   
-                        <router-link :to="`/jobdetail/${job.id}`"> <h4 style="color: rgb(70,130,180);">{{ job.title }}</h4> </router-link>
-                			
-                   
-                </div>
-                
-                 <strong > Description  : </strong> <br>
-                
-                  <span >  {{ job.description }} </span>  <br>
-                
-                
-                
-               <!--span >     <strong> salary :  </strong> {{ job.salary}}  </span><br--> 
-                  
-                
-                   
-               <span >   <strong> requirements: </strong>   {{ job.requirements}}  </span>  <br>
-                
-                
-                    
-            </div>
-        
-        </div>
- 
-
-    <a class="text-uppercase loadmore-btn mx-auto d-block" href="">Load More Job Posts</a>
-<!--/div-->
-      
-          </div>
-        </div>
+    <div>
+    <router-view> </router-view>
+    </div>
     </div>
    
   </div>
@@ -317,6 +222,10 @@ nav a {
                         fire.$emit('searchcontract');
                   
                   },
+                          logout() {
+                this.$store.commit('logout');
+                this.$router.push('/listjob');
+            },
                            },
 
              created(){
@@ -348,7 +257,12 @@ nav a {
   
   
              },
-         
+                  computed: {
+            currentUser() {
+                return this.$store.getters.currentUser
+                
+            }
+        },
        
     }
 </script>
