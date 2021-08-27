@@ -40,6 +40,12 @@ class FilesController extends Controller
            'files'=>$files
            ]);
     }
+    public function filesapplication(){
+      $files= Files::latest()->paginate(8);
+     return response()->json([
+         'files'=>$files
+         ]);
+  }
   public function formSubmitDiploma(Request $request,$id)
   {
       $this->validate($request,[
@@ -51,7 +57,7 @@ class FilesController extends Controller
       $request->file->move(public_path('upload'), $fileName);
         $filetable=new Files;
         $filetable->ref= $fileName;
-        $filetable->type="diploma";
+        $filetable->type="cover_letter";
         $filetable->user_id=auth()->id();
         $filetable->save();
       return response()->json(['success'=>'You have successfully upload file.']);

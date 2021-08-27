@@ -1,19 +1,12 @@
 <template>
 
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title> Log in</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
 
 
-
-	<div class="container h-100">
+<div class="register-page" style="background-image:url(/img/banner-3.jpg);
+			background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;">
+     
 			<!--img :src="`/img/icon/logos.png`" style="width: 130px; margin-left:200px ;"-->
 		<div class="d-flex justify-content-center h-100">
 
@@ -50,7 +43,7 @@
 				</div>
 
 				<div class="mt-4">
-					<div class="d-flex justify-content-center links">
+					<div class="d-flex justify-content-center links" style="color: white;">
 						Login In And Join The Team
 
 					</div>
@@ -71,13 +64,9 @@
 
 
 	</div>
-<footer>
 
-   <strong style="float:left ; margin-top:22px; margin-left:529px;"> Copyright  &copy; 2021 <a href="#">Machinestalk</a>. All rights reserved. </strong>
 
-</footer>
-	</body>
-</html>
+
 
 </template>
 <script>
@@ -122,13 +111,13 @@ export default {
 
 }
 	/* Coded with love by Mutiullah Samim */
-
+  
 		.user_card {
 			height: 400px;
 			width: 350px;
 			margin-top: 150px;;
 
-			background:#88C1E7;
+			background:rgba(14, 2, 80, 0.685);
 			position: relative;
 			display: flex;
 			justify-content: center;
@@ -137,7 +126,7 @@ export default {
 			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 			-webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 			-moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-			border-radius: 5px;
+			border-radius: 10px;
 
 		}
 		.brand_logo_container {

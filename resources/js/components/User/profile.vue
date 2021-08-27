@@ -99,7 +99,7 @@
                 <ul class="nav nav-pills">
                   <li class="nav-item"><a class="nav-link active" href="#infos" data-toggle="tab">My information</a></li>
                   <li class="nav-item"><a class="nav-link" href="#resume" data-toggle="tab">My resumes</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#diploma" data-toggle="tab">My diplomas</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#diploma" data-toggle="tab">My Cover letters</a></li>
                   <li class="nav-item"><a class="nav-link" href="#credentials" data-toggle="tab">My credentials</a></li>
                 </ul>
               </div><!-- /.card-header -->
@@ -143,7 +143,13 @@
                           :class="{ 'is-invalid': form.errors.has('education') }">
                         </div>
                       </div>
-                      
+                       <div class="form-group row">
+                        <label for="inputEducation" class="col-sm-2 col-form-label">Years of experience</label>
+                        <div class="col-sm-10">
+                          <input v-model="form.experience" type="text" class="form-control" id="inputEducation" placeholder="Years of experience"
+                          :class="{ 'is-invalid': form.errors.has('experience') }">
+                        </div>
+                      </div>
                       <div class="form-group row">
                       <label for="photo" class="col-sm-2 col-form-label">Photo</label>
                       <div class="col-sm-10">
@@ -244,10 +250,11 @@
         <div class="tab-pane" id="diploma">
                 
                         <div class="form-group row">
+                          
                         <div class="offset-sm-2 col-sm-10">
                <div class="form-group row">
                <form  @submit="formSubmitdiploma" enctype="multipart/form-data">
-                 <label for="name">Name diplomas</label>
+                 <label for="name">Name Cover letter</label>
                    <input v-model="form.diploma" id="name" class="form-control" type="text" name="name">
                  <div class="input-group mt-2"><div class="custom-file"><input v-on:change="onFileChange" type="file" name="file"  class="custom-file-input"> <label for="exampleInputFile" class="custom-file-label">
                      Choose file:</label></div></div>
@@ -258,7 +265,7 @@
       </div>
                               <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Diploma list</h3>
+                <h3 class="card-title">Cover letter list</h3>
               </div>
              
               <div class="card-body p-0">
@@ -266,13 +273,13 @@
                   <thead>
                     <tr>
                       <th style="width: 10px">#</th>
-                      <th>Diploma</th>
+                      <th>Cover letter</th>
                       <th></th>
                       <th style="width: 40px">Operations</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="file in files.files" v-if="file.type == 'diploma'" :key="file.id" >
+                    <tr v-for="file in files.files" v-if="file.type == 'cover_letter'" :key="file.id" >
                       <td>{{ file.id }}</td>
                       <td>{{ file.name}}</td>
                       
@@ -320,7 +327,7 @@
         password:'',
         resume:'',
         diploma:'',
-
+        experience:'',
        }),
           file:{
                 name:'',
@@ -483,7 +490,7 @@
                     fire.$emit('ajoutprofile');
                        Toast.fire({
                          icon: 'success',
-                        title: 'Diploma Uploaded'
+                        title: 'Cover letter Uploaded'
 
                 });
                     currentObj.success = response.data.success;
@@ -493,7 +500,7 @@
                     fire.$emit('ajoutprofile');
                        Toast.fire({
                          icon: 'success',
-                        title: 'Diploma Uploaded'
+                        title: 'Cover letter Uploaded'
                 });
                 });
             },

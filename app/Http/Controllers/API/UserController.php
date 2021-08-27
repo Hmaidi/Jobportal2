@@ -98,6 +98,11 @@ class UserController extends Controller
                          'phone' => 'integer',
                      ]);
                      }
+                     if($request->experience != null){
+                        $this->validate($request,[
+                            'experience' => 'string',
+                        ]);
+                        }
  
           if($request->photo !=null){
  
@@ -144,7 +149,10 @@ class UserController extends Controller
      $user->phone=$request->phone;
      $user->save();
     }
- 
+    if($request->experience != null){
+        $user->experience=$request->experience;
+        $user->save();
+       }
         return ['message' => "Success"];
     }
  else {
@@ -161,6 +169,10 @@ class UserController extends Controller
          $user->education=$request->education;
          $user->save();
         }
+        if($request->experience != null){
+            $user->experience=$request->experience;
+            $user->save();
+           }
         if($request->address != null){
          $user->address=$request->address;
          $user->save();

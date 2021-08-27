@@ -17,7 +17,7 @@
             <h2><b> Form Application</b></h2>
             
     <div class="card-body">
-        <form >
+        <form @submit.prevent="Apply()">
 
              <div class="form-group">
                 <label for="salary">Name</label>
@@ -52,11 +52,21 @@
             </div>
             <div class="form-group">
                 <label for="salary">Required years of experience</label>
-                <input v-model="form.years" type="text" id="salary"  class="form-control" value="" required>
+                <input v-model="form.experience" type="text" id="salary"  class="form-control" value="" required>
            
             </div>
-  
-            <div class="form-group">
+
+   <div class="form-group" v-for="forme in forms.forms" :key="forme.id">
+               
+                 <label for="name">{{ forme.field }}</label>
+                 
+                   <input @click="chargerid(forme.id)" v-if="forme.type == 'input'" type="text" v-model="form.value" id="name" class="form-control">
+                 <textarea @click="chargerid(forme.id)" v-if="forme.type == 'Textarea'" v-model="form.value"   class="form-control" ></textarea>
+                      
+               
+             </div>
+                  
+                         <div class="form-group">
                 <label for="location">Resume</label>
                 <select v-model="form.resume"  id="location" class="form-control" required>
                     <option value="" disabled selected>Select Resume</option>
@@ -64,8 +74,17 @@
                 </select>
       
             </div>
-
-              
+               <!--div class="form-group" >
+               
+                 <label for="name">Name resume</label>
+                   <input v-model="form.resume1" id="name" class="form-control" type="text" name="name">
+                 <div class="input-group mt-2"><div class="custom-file"><input type="file" v-on:change="onFileChange" name="file"  class="custom-file-input"> <label for="exampleInputFile" class="custom-file-label">
+                     Choose file:</label></div></div>
+                      
+               
+             </div-->
+      
+   
    
             <div>
                 <input class="btn btn-danger" type="submit" value="submit">
@@ -97,25 +116,6 @@
   position: relative;
   margin-left: 15%;
 }
-/*select {
-    background-color: rgba(214, 247, 240, 0.493);
-    color: white;
-    font: bold;
-}
-option {
-    background-color: rgba(214, 247, 240, 0.493);
-    color: black;
-    font: bold;
-}
-input {
-    background-color: rgba(214, 247, 240, 0.493);
-    color: white;
-    font: bold;
-}
-::placeholder {
-    color: white;
-    font: bold;
-}*/
 .global {
 	text-align: center;
   
@@ -167,7 +167,6 @@ nav a {
 	position: absolute;
 	top: 100px;
     background-image:url(/img/banner-3.jpg);
-    /*background-image: url(https://i.postimg.cc/T3B3WFcv/2.jpg);*/
 	-webkit-background-size: cover;
 	background-size: cover;
 	background-position: center center;
@@ -221,15 +220,14 @@ nav a {
               form : new Form({
         name:'',
         address:'',
-        eucation:'',
-        photo:'',
         skills:'',
         email:'',
         phone:'',
-        password:'',
         resume:'',
         diploma:'',
-
+        experience:'',
+        value:'',
+         resume1:'',
        }),
           file:{
                 name:'',
@@ -243,7 +241,10 @@ nav a {
                 jobs:{
                     jobs:{}
                 },
-      
+                id:'',
+      forms:{
+          forms:{}
+      },
            users:{
                   users:{},
               },
@@ -274,7 +275,40 @@ nav a {
                  
             fillform(){
                  this.form.fill(this.User1);
-               }
+               },
+                  Apply(){
+                
+                this.form.post('/api/applicationform/'+this.key).then(()=>this.form.post('/api/extrafielsapplications/'+this.id).then(()=>{
+                
+             
+                this.form.reset();
+                Toast.fire({
+                        icon: 'success',
+                        title: 'Application done successfuly'
+
+                }),
+                 setTimeout(() => {
+                    window.location.href = '/listjob'
+                }, 1000)
+
+                }).catch((response)=>{ console.log(response);
+
+
+                 }));
+                    },
+                onFileChange(e){
+                console.log(e.target.files[0]);
+                this.file = e.target.files[0];
+                 
+            },
+              afficherForms(){
+                   
+                    axios.get('/api/formsjob/'+this.key).then(({ data }) =>(this.forms = data));
+                   
+                   },
+                   chargerid(id){
+                       this.id = id;
+                   }
                },
 
              created(){
@@ -284,8 +318,13 @@ nav a {
                 axios.get('/api/file/'+this.User1.id).then(({data}) => {this.files =data});
                 
                 this.afficherMembre();   
-                      this.form.fill(this.User1);           
+                 this.afficherForms();
+              this.form.fill(this.User1);
+              
+              
                      },
+                    
+                   
              computed: {
                currentUser() {
                 return this.$store.getters.currentUser

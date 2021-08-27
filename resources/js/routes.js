@@ -11,12 +11,14 @@ import register from './components/Auth/Register.vue'
 import categorie from './components/Admin/Categorie.vue'
 import location from './components/Admin/Location.vue'
 import companie from './components/Admin/Companie.vue'
+import applications from './components/Admin/applications.vue'
 import contracttype from './components/Admin/ContractType.vue'
 import viewjob from './components/Admin/Jobs/ViewJob.vue'
 import index from './components/index.vue'
 import jobdetail from './components/User/jobdetail.vue'
 import listjob from './components/User/listjob.vue'
 import formapplication from './components/User/formapplication.vue'
+
 export const routes = [
     {path: '/', component: Main ,meta: {requiresAuth: true},children:[
       
@@ -31,6 +33,7 @@ export const routes = [
         {path: '/updatejob/:id' , component: updatejob , meta: {requiresAuth: true}},
         {path: '/createjob' , component: createjob , meta: {requiresAuth: true}},
         {path: '/viewjob/:id' , component: viewjob , meta: {requiresAuth: true}},
+        {path: '/applications' , component: applications , meta: {requiresAuth: true}},
         
         ]
 },

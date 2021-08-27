@@ -37,6 +37,7 @@ Route::post('updateresume/{id}','API\FilesController@addfilename');
 Route::apiResource('File' ,'API\FilesController');
 Route::post('formSubmitdiploma/{id}','API\FilesController@formSubmitDiploma');
 Route::post('updatediploma/{id}','API\FilesController@addfilenamediploma');
+Route::get('/files','API\FilesController@filesapplication');
 
 //resetpass
 Route::post('resetpassword' ,'API\UserController@resetpass');
@@ -70,6 +71,7 @@ Route::post('/status/{id}/{stat}','API\JobController@changestatus');
 Route::apiResource('/categoryjob','API\CategoryJobController');
 
 //formsjob
+Route::get('/formsjob/{id}','API\FormsJobController@getforms');
 Route::post('/formsfield/{id}','API\FormsJobController@store');
 
 //contract
@@ -88,3 +90,8 @@ Route::get('/searchwithcontract/{id}','API\HomeController@getjobswithcontract');
 Route::get('/searchwithlocation/{id}','API\HomeController@getjobswithlocation');
 Route::get('/searchwithcategorie/{id}','API\HomeController@getjobswithcategorie');
 Route::get('/getindexjob/{id}','API\HomeController@getjob');
+
+//applications
+Route::apiResource('/application','API\ApplicationController');
+Route::post('/applicationform/{id}','API\ApplicationController@store');
+Route::post('/extrafielsapplications/{id}','API\ApplicationController@storeextrafields');

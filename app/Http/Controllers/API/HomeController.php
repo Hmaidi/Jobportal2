@@ -96,6 +96,15 @@ class HomeController extends Controller
                            
 
                        }
+                       public function getjobswithcategorie($id){
+                           
+                        $categorie = categories::where('id','=',$id)->latest()->paginate(8);
+                        return response()->json([
+                        "jobs" => $categorie->jobs()
+                        ]);
+                           
+
+                       }
                        public function getjob($id){
                         $job=jobs::find($id);
                         return response()->json([

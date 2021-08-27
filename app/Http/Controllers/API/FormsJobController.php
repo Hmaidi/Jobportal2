@@ -66,7 +66,12 @@ public function formsfield(Request $request) {
     {
         //
     }
-
+public function getforms ($id){
+    $formsjob= formsjob::where('job_id',$id)->get();
+    return response()->json([
+        'forms'=>$formsjob
+        ]);
+    }
     /**
      * Update the specified resource in storage.
      *

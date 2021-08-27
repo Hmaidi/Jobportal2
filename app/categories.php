@@ -10,7 +10,7 @@ use App\categoryjob;
 
 class categories extends Model
 {
-    use SoftDeletes;
+    protected $table = 'categories';
     
     protected $fillable = [
         'id', 'name'

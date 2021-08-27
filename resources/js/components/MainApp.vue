@@ -131,7 +131,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <p>Jobs</p>
                         </router-link>
                     </li>
-       
+       <li class="nav-item" v-if="currentUser.role == 'admin'">
+                        
+                        <router-link to="/applications" class="nav-link">
+                        
+                       <i class="fas fa-user-md" style="color:#05dfd7"></i> 
+                        <p>Applications</p>
+                        </router-link>
+                    </li>
         <li class="nav-item">
            <a href="#!" @click.prevent="logout" class="nav-link">
            <i class="fas fa-lock-open" style="color:#05dfd7" ></i>

@@ -12,45 +12,54 @@
         </div>
         <div class="content-area">
             
-          <div class="wrapper">
+          <div class="job">
             
-              <div class="col-lg-8 post-list">
+              <div>
     
-        <div class="single-post d-flex flex-row" >
+        <div>
 
-            <div class="details">
+            <div >
            <br>
-                <strong style="float: left;"> Description  : </strong> <br>
+                               <span     v-for="location in locations.locations.data" v-if="location.id == jobs.jobs.location_id" :key="location.id">   <strong> Location: </strong>   {{ location.name}}  </span>  <br>
+                   <span  v-for="companie in companies.companies.data" v-if="companie.id == jobs.jobs.company_id" :key="companie.id">   <strong> Companie:   </strong>   {{companie.name}}  </span>  <br>
+                     <span  v-for="contract in contracts.contracts.data" v-if="contract.id == jobs.jobs.contract_id" :key="contract.id" >   <strong> Contract Type: </strong>   {{ contract.name}}  </span>  <br>
+                <strong> Description  : </strong> <br>
                 
-                  <span style="float: left;">  {{ jobs.jobs.description }} </span>  <br>
-                
-                
-                
-               <span style="float: left;">     <strong> salary :  </strong> {{ jobs.jobs.salary}}  </span><br> 
-                  
-                
+                  <span>  {{ jobs.jobs.description }} </span>  <br>
                    
-               <span style="float: left;">   <strong> Requirements: </strong>   {{ jobs.jobs.requirements}}  </span>  <br>
-                 <span style="float: left;" v-for="location in locations.locations.data" v-if="location.id == jobs.jobs.location_id" :key="location.id">   <strong> Location: </strong>   {{ location.name}}  </span>  <br>
-                   <span style="float: left;" v-for="companie in companies.companies.data" v-if="companie.id == jobs.jobs.company_id" :key="companie.id">   <strong> Companie:   </strong>   {{companie.name}}  </span>  <br>
-                     <span style="float: left;" v-for="contract in contracts.contracts.data" v-if="contract.id == jobs.jobs.contract_id" :key="contract.id" >   <strong> Contract Type: </strong>   {{ contract.name}}  </span>  <br>
-                       <span style="float: left;">   <strong> Expiration date: </strong>   {{ jobs.jobs.expiry_date}}  </span>  <br>
+               <span>   <strong> Requirements: </strong>   {{ jobs.jobs.requirements}}  </span>  <br>
+
+                       <span>   <strong> Expiration date: </strong>   {{ jobs.jobs.expiry_date}}  </span>  <br>
             </div>
         </div>
  
-
-    <!--router-link :to="`/formapplication/${this.key}`"  class="text-uppercase loadmore-btn mx-auto d-block">Apply</router-link-->
-    <a  @click="onLinkClicked()" class="text-uppercase loadmore-btn mx-auto d-block">Apply</a>
+              <div @click="onLinkClicked()"  class="button">
+ 
+    <a>Apply</a>
+          </div>
 </div>
       
           </diV>
         </div>
     </div>
    
-  </div>
+  
 </template>
 
 <style scoped>
+.button{
+    color: white;
+    background-color: rgb(14, 2, 80) ;
+    padding: 1%;
+      border: 0.5px solid rgb(155, 151, 151);
+  box-shadow: 2px 2px 5px rgb(128, 125, 125);
+     border-radius: 30px;
+     width: 50%;
+   margin: auto ;
+   margin-top: 1%;
+   cursor: pointer;
+     
+}
 .job {
   border: 0.5px solid rgb(155, 151, 151);
   box-shadow: 2px 2px 5px rgb(128, 125, 125);
